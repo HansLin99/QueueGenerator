@@ -56,4 +56,20 @@ public class testListOfCustomer {
         assertEquals(1, testQ.getCustomerSequence(testC));
     }
 
+    @Test
+    void testThisCustomer() {
+        testC.name = "Hans";
+        testQ.thisCustomer(testC);
+        assertEquals(1, testC.position);
+        testQ.addCustomer(testC);
+        assertEquals(1, testC.position);
+        Customer testR = new Customer();
+        testR.name = "Kai";
+        testQ.thisCustomer(testR);
+        assertEquals(2, testR.position);
+        testQ.addCustomer(testR);
+        testQ.thisCustomer(testR);
+        assertEquals(2, testR.position);
+    }
+
 }
