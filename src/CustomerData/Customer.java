@@ -1,12 +1,14 @@
 package CustomerData;
 
 
-public class Customer implements Interfaces.User {
+import Interfaces.User;
+
+public class Customer implements User {
 
 
-    public String name = "";
+    public String name;
     public int position;
-    public String phoneNumber = "";
+    public String phoneNumber;
 
 
 
