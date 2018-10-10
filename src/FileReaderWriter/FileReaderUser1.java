@@ -19,7 +19,7 @@ public class FileReaderUser1 {
             ArrayList<String> partsOfLine = splitOnSpace(line);
             c.name = partsOfLine.get(0);
             c.phoneNumber = partsOfLine.get(1);
-            //c.position = partsOfLine.get(3)
+            //c.position = partsOfLine.get(2);
             q.addCustomer(c);
 
         }

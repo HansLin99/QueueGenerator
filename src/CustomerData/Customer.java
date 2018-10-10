@@ -3,7 +3,7 @@ package CustomerData;
 
 import Interfaces.User;
 
-public class Customer implements User {
+public  class Customer implements User {
 
 
     public String name;
@@ -27,6 +27,8 @@ public class Customer implements User {
     public void addPhoneNumber(String phoneNum){
         this.phoneNumber = phoneNum;
     }
+
+
 
 
     //REQUIRE:position greater than or equal to 0 and less than the size-1
