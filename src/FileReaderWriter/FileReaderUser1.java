@@ -2,6 +2,7 @@ package FileReaderWriter;
 
 import CustomerData.Customer;
 import CustomerData.ListOfCustomer;
+import CustomerData.RegularCustomer;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,7 +16,7 @@ public class FileReaderUser1 {
         List<String> lines = Files.readAllLines(Paths.get("output"));
         ListOfCustomer q = new ListOfCustomer();
         for (String line : lines){
-            Customer c = new Customer();
+            Customer c = new RegularCustomer();
             ArrayList<String> partsOfLine = splitOnSpace(line);
             c.name = partsOfLine.get(0);
             c.phoneNumber = partsOfLine.get(1);

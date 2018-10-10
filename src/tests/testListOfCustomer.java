@@ -2,6 +2,7 @@ package tests;
 
 import CustomerData.Customer;
 import CustomerData.ListOfCustomer;
+import CustomerData.RegularCustomer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,7 @@ public class testListOfCustomer {
 
     @BeforeEach
     void setUp() {
-        testC = new Customer();
+        testC = new RegularCustomer();
         testQ = new ListOfCustomer();
 
     }
@@ -63,7 +64,7 @@ public class testListOfCustomer {
         assertEquals(1, testC.position);
         testQ.addCustomer(testC);
         assertEquals(1, testC.position);
-        Customer testR = new Customer();
+        Customer testR = new RegularCustomer();
         testR.name = "Kai";
         testQ.thisCustomer(testR);
         assertEquals(2, testR.position);

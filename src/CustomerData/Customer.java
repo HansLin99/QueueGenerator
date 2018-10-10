@@ -3,7 +3,10 @@ package CustomerData;
 
 import Interfaces.User;
 
-public  class Customer implements User {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Customer implements User {
 
 
     public String name;
@@ -29,7 +32,7 @@ public  class Customer implements User {
     }
 
 
-
+    public abstract void addCustomer(List<Customer> queue, Customer customer);
 
     //REQUIRE:position greater than or equal to 0 and less than the size-1
     //MODIFY:nothing
