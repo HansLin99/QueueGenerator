@@ -20,7 +20,11 @@ public class FileReaderUser1 {
             ArrayList<String> partsOfLine = splitOnSpace(line);
             c.name = partsOfLine.get(0);
             c.phoneNumber = partsOfLine.get(1);
-            //c.position = partsOfLine.get(2);
+            try {
+                c.position = (Integer.parseInt(partsOfLine.get(2)));
+            } catch (ArrayIndexOutOfBoundsException e){
+                System.out.println("Your save file have a invalid position.");
+            }
             q.addCustomer(c);
 
         }
@@ -28,8 +32,7 @@ public class FileReaderUser1 {
     }
 
     private static ArrayList<String> splitOnSpace(String line){
-        String[] splits = line.split(" ");
-        String[] splits2 = line.split("");
+        String[] splits = line.split("\\s+");
         return new ArrayList<>(Arrays.asList(splits));
     }
 }

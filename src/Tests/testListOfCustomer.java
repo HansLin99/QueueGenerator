@@ -1,4 +1,4 @@
-package tests;
+package Tests;
 
 import CustomerData.Customer;
 import CustomerData.ListOfCustomer;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class testListOfCustomer {
+ class testListOfCustomer {
     Customer testC;
     ListOfCustomer testQ;
 
@@ -71,6 +71,12 @@ public class testListOfCustomer {
         testQ.addCustomer(testR);
         testQ.thisCustomer(testR);
         assertEquals(2, testR.position);
+    }
+
+
+    @Test
+     void testSearchCustomer(){
+
     }
 
 }

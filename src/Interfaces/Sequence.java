@@ -1,6 +1,8 @@
 package Interfaces;
 
 import CustomerData.Customer;
+import Exceptions.WrongInstructionException;
+
 import java.util.ArrayList;
 
 public interface Sequence {
@@ -30,6 +32,6 @@ public interface Sequence {
     void thisCustomer(Customer c);
 
     //EFFECT:command to next step
-    void functions(Customer c);
+    void functions(Customer c, String s) throws WrongInstructionException;
 
 }

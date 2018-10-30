@@ -9,38 +9,37 @@ import java.util.List;
 public abstract class Customer implements User {
 
 
-    public String name;
-    public int position;
-    public String phoneNumber;
+    public String name = "";
+    public int position = 0;
+    public String phoneNumber = "";
+    public boolean ifReserved = false;
 
 
 
 
 
-    @Override
+
     //MODIFY:this
     //EFFECTS:change the customer's name to the name entered
-    public void addName(String name){
+    private void addName(String name){
         this.name = name;
     }
 
-    @Override
     //MODIFY:this
     //EFFECTS:change the customer's phone number to the phoneNum entered
-    public void addPhoneNumber(String phoneNum){
+    private void addPhoneNumber(String phoneNum){
         this.phoneNumber = phoneNum;
     }
 
+    public void addCustomer(Customer customer, String name, String phoneNum) {
+        if (name.equals("")){
+        addPhoneNumber(phoneNum);}
+        else if (phoneNum.equals("")) {addName(name);}
+    }
 
     public abstract void addCustomer(List<Customer> queue, Customer customer);
 
-    //REQUIRE:position greater than or equal to 0 and less than the size-1
-    //MODIFY:nothing
-    //EFFECT:return true if the customer need to be seated
-    public boolean needToBeSeated(int position){
-        //stub
-        return false;
-    }
+
 
 
     //REQUIRE:nothing
