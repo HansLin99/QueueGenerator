@@ -15,7 +15,7 @@ public class FileWriterUser1 {
         List<String> lines = new ArrayList<>();
         PrintWriter writer = new PrintWriter("output");
         for (Customer c: queue){
-            lines.add(c.name + " " + c.phoneNumber + " " + c.position);
+            lines.add(c.getName() + " " + c.getPhoneNumber() + " " + c.getPosition());
         }
         for (String line : lines){
             writer.println(line);

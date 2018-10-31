@@ -3,16 +3,15 @@ package CustomerData;
 
 import Interfaces.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Customer implements User {
 
 
-    public String name = "";
-    public int position = 0;
-    public String phoneNumber = "";
-    public boolean ifReserved = false;
+    private String name = "";
+    private int position = 0;
+    private String phoneNumber = "";
+    private boolean ifReserved = false;
 
 
 
@@ -21,42 +20,46 @@ public abstract class Customer implements User {
 
     //MODIFY:this
     //EFFECTS:change the customer's name to the name entered
-    private void addName(String name){
+    public void setName(String name){
         this.name = name;
     }
 
     //MODIFY:this
     //EFFECTS:change the customer's phone number to the phoneNum entered
-    private void addPhoneNumber(String phoneNum){
+    public void setPhoneNumber(String phoneNum){
         this.phoneNumber = phoneNum;
     }
 
     public void addCustomer(Customer customer, String name, String phoneNum) {
         if (name.equals("")){
-        addPhoneNumber(phoneNum);}
-        else if (phoneNum.equals("")) {addName(name);}
+        setPhoneNumber(phoneNum);}
+        else if (phoneNum.equals("")) {
+            setName(name);}
     }
 
     public abstract void addCustomer(List<Customer> queue, Customer customer);
 
-
-
-
-    //REQUIRE:nothing
-    //MODIFY:nothing
-    //EFFECT:get the Info of the customer including name and phone number
-    public void getInfoCustomer(Customer c){
-        //stub
+    public int getPosition() {
+        return position;
     }
 
-
-    //EFFECT:send a text message to inform the customer to be seated
-    public void sentText(){
-        //stub
+    public String getName() {
+        return name;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
+    public boolean isIfReserved() {
+        return ifReserved;
+    }
 
+    public void setIfReserved(boolean ifReserved) {
+        this.ifReserved = ifReserved;
+    }
 
-
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }

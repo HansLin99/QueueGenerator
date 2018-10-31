@@ -22,10 +22,10 @@ public class testExceptions {
         roxy = new RegularCustomer();
         kai  = new RegularCustomer();
         kevin = new RegularCustomer();
-        hans.name = "Hans";
-        roxy.name = "Roxy";
-        kai.name  = "Kai";
-        kevin.name = "Kevin";
+        hans.setName("Hans");
+        roxy.setName("Roxy");
+        kai.setName("Kai");
+        kevin.setName("Kevin");
         testQueue.addCustomer(hans);
         testQueue.addCustomer(roxy);
         testQueue.addCustomer(kai);

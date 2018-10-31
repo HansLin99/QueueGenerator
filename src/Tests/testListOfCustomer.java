@@ -26,51 +26,51 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
     @Test
     void testAddCustomer() {
-        assertEquals(0, testQ.queue.size());
+        assertEquals(0, testQ.getQueue().size());
         testQ.addCustomer(testC);
-        assertTrue(testQ.queue.contains(testC));
+        assertTrue(testQ.getQueue().contains(testC));
     }
 
     @Test
     void testRemoveCustomer() {
         testQ.addCustomer(testC);
-        assertTrue(testQ.queue.contains(testC));
+        assertTrue(testQ.getQueue().contains(testC));
         testQ.removeCustomer(testC);
-        assertFalse(testQ.queue.contains(testC));
+        assertFalse(testQ.getQueue().contains(testC));
     }
 
     @Test
     void testResetQueue() {
         testQ.addCustomer(testC);
-        assertEquals(1, testQ.queue.size());
+        assertEquals(1, testQ.getQueue().size());
         testQ.resetQueue();
-        assertEquals(0, testQ.queue.size());
+        assertEquals(0, testQ.getQueue().size());
 
     }
 
     @Test
     void testGetCustomer() {
         assertEquals(0, testQ.getCustomerSequence(testC));
-        testC.name = "Hans";
-        testC.position = 1;
+        testC.setName("Hans");
+        testC.setPosition(1);
         testQ.addCustomer(testC);
         assertEquals(1, testQ.getCustomerSequence(testC));
     }
 
     @Test
     void testThisCustomer() {
-        testC.name = "Hans";
+        testC.setName("Hans");
         testQ.thisCustomer(testC);
-        assertEquals(1, testC.position);
+        assertEquals(1, testC.getPosition());
         testQ.addCustomer(testC);
-        assertEquals(1, testC.position);
+        assertEquals(1, testC.getPosition());
         Customer testR = new RegularCustomer();
-        testR.name = "Kai";
+        testR.setName("Kai");
         testQ.thisCustomer(testR);
-        assertEquals(2, testR.position);
+        assertEquals(2, testR.getPosition());
         testQ.addCustomer(testR);
         testQ.thisCustomer(testR);
-        assertEquals(2, testR.position);
+        assertEquals(2, testR.getPosition());
     }
 
 

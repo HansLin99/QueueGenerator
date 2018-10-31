@@ -18,10 +18,10 @@ public class FileReaderUser1 {
         for (String line : lines){
             Customer c = new RegularCustomer();
             ArrayList<String> partsOfLine = splitOnSpace(line);
-            c.name = partsOfLine.get(0);
-            c.phoneNumber = partsOfLine.get(1);
+            c.setName(partsOfLine.get(0));
+            c.setPhoneNumber(partsOfLine.get(1));
             try {
-                c.position = (Integer.parseInt(partsOfLine.get(2)));
+                c.setPosition((Integer.parseInt(partsOfLine.get(2))));
             } catch (ArrayIndexOutOfBoundsException e){
                 System.out.println("Your save file have a invalid position.");
             }
