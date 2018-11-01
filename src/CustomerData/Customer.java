@@ -1,9 +1,13 @@
 package CustomerData;
 
 
+import Exceptions.UserNotInQueueException;
 import Interfaces.User;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Customer implements User {
 
@@ -12,11 +16,51 @@ public abstract class Customer implements User {
     private int position = 0;
     private String phoneNumber = "";
     private boolean ifReserved = false;
+    private ListOfCustomer fellows;
+    private HashMap<Customer, List<Customer>> group;
+
+    public Customer() {
+        group = new HashMap<>();
+        fellows = new ListOfCustomer();
+    }
 
 
+    //MODIFIES:this
+    //EFFECTS:add the customer and his fellow to a group
+    public void addCustomerIntoGroup(Customer customer) {
+        group.put(customer, customer.getFellows().getQueue());
+    }
+
+    //MODIFIES:this
+    //EFFECTS:add the customer into fellow
+    public void addFellows(Customer customer) {
+        if (!customer.getFellows().getQueue().contains(customer)) {
+            customer.getFellows().getQueue().add(customer);
+        }
+    }
 
 
+    //MODIFIES:this
+    //EFFECTS:remove the customer into fellow
+    public void removeFellows(Customer customer) throws UserNotInQueueException {
+        if (!customer.getFellows().getQueue().contains(customer)){
+            throw new UserNotInQueueException();
+        }
+        else customer.getFellows().getQueue().remove(customer);
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(name, customer.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     //MODIFY:this
     //EFFECTS:change the customer's name to the name entered
@@ -61,5 +105,21 @@ public abstract class Customer implements User {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public HashMap<Customer, List<Customer>> getGroup() {
+        return group;
+    }
+
+    public void setGroup(HashMap<Customer, List<Customer>> group) {
+        this.group = group;
+    }
+
+    public ListOfCustomer getFellows() {
+        return fellows;
+    }
+
+    public void setFellows(ListOfCustomer fellows) {
+        this.fellows = fellows;
     }
 }

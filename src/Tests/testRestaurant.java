@@ -1,4 +1,0 @@
-package Tests;
-
- class testRestaurant {
-}
