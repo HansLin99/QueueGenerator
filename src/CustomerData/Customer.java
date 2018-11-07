@@ -27,8 +27,9 @@ public abstract class Customer implements User {
 
     //MODIFIES:this
     //EFFECTS:add the customer and his fellow to a group
-    public void addCustomerIntoGroup(Customer customer) {
-        group.put(customer, customer.getFellows().getQueue());
+    public void addCustomerIntoGroup(Customer fellowLeader, ListOfCustomer fellows) {
+        this.fellows = fellows;
+        group.put(fellowLeader, fellowLeader.getFellows().getQueue());
     }
 
     //MODIFIES:this
@@ -111,15 +112,22 @@ public abstract class Customer implements User {
         return group;
     }
 
-    public void setGroup(HashMap<Customer, List<Customer>> group) {
-        this.group = group;
-    }
 
     public ListOfCustomer getFellows() {
         return fellows;
     }
 
-    public void setFellows(ListOfCustomer fellows) {
-        this.fellows = fellows;
+    public void addFellows(ListOfCustomer fellows) {
+        if (!fellows.getQueue().contains(this)) {
+            fellows.getQueue().add(this);
+            fellows.addFellowLeader(this);
+        }
+    }
+
+    public void removeFellows(ListOfCustomer fellows) {
+        if (fellows.getQueue().contains(this)) {
+            fellows.getQueue().remove(this);
+            fellows.removeFellowLeader(this);
+        }
     }
 }
