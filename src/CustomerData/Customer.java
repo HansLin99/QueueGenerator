@@ -118,16 +118,20 @@ public abstract class Customer implements User {
     }
 
     public void addFellows(ListOfCustomer fellows) {
-        if (!fellows.getQueue().contains(this)) {
+        if (!ifContainInTheQueue(this, fellows)) {
             fellows.getQueue().add(this);
             fellows.addFellowLeader(this);
         }
     }
 
     public void removeFellows(ListOfCustomer fellows) {
-        if (fellows.getQueue().contains(this)) {
+        if (ifContainInTheQueue(this, fellows)) {
             fellows.getQueue().remove(this);
             fellows.removeFellowLeader(this);
         }
+    }
+
+    private boolean ifContainInTheQueue(Customer customer, ListOfCustomer fellows) {
+       return fellows.getQueue().contains(customer);
     }
 }

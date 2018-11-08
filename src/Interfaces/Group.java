@@ -5,7 +5,7 @@ import Exceptions.WrongInstructionException;
 
 import java.util.ArrayList;
 
-public interface Sequence {
+public interface Group {
     //REQUIRE:position greater than or equal to 0 and less than the s
     // ize-1
     //MODIFY:this
