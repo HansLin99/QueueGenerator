@@ -1,7 +1,6 @@
 package FileReaderWriter;
 
 import CustomerData.Customer;
-import CustomerData.ListOfCustomer;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

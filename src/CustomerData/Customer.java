@@ -4,7 +4,6 @@ package CustomerData;
 import Exceptions.UserNotInQueueException;
 import Interfaces.User;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -29,14 +28,14 @@ public abstract class Customer implements User {
     //EFFECTS:add the customer and his fellow to a group
     public void addCustomerIntoGroup(Customer fellowLeader, ListOfCustomer fellows) {
         this.fellows = fellows;
-        group.put(fellowLeader, fellowLeader.getFellows().getQueue());
+        group.put(fellowLeader, fellowLeader.getFellows().getCustomers());
     }
 
     //MODIFIES:this
     //EFFECTS:add the customer into fellow
     public void addFellows(Customer customer) {
-        if (!customer.getFellows().getQueue().contains(customer)) {
-            customer.getFellows().getQueue().add(customer);
+        if (!customer.getFellows().getCustomers().contains(customer)) {
+            customer.getFellows().getCustomers().add(customer);
         }
     }
 
@@ -44,10 +43,10 @@ public abstract class Customer implements User {
     //MODIFIES:this
     //EFFECTS:remove the customer into fellow
     public void removeFellows(Customer customer) throws UserNotInQueueException {
-        if (!customer.getFellows().getQueue().contains(customer)){
+        if (!customer.getFellows().getCustomers().contains(customer)){
             throw new UserNotInQueueException();
         }
-        else customer.getFellows().getQueue().remove(customer);
+        else customer.getFellows().getCustomers().remove(customer);
     }
 
     @Override
@@ -84,6 +83,30 @@ public abstract class Customer implements User {
 
     public abstract void addCustomer(List<Customer> queue, Customer customer);
 
+    public ListOfCustomer getFellows() {
+        return fellows;
+    }
+
+    public void addFellows(ListOfCustomer fellows) {
+        if (!ifContainInTheQueue(this, fellows)) {
+            fellows.getCustomers().add(this);
+            fellows.addFellowLeader(this);
+        }
+    }
+
+    public void removeFellows(ListOfCustomer fellows) {
+        if (ifContainInTheQueue(this, fellows)) {
+            fellows.getCustomers().remove(this);
+            fellows.removeFellowLeader(this);
+        }
+    }
+
+
+
+    private boolean ifContainInTheQueue(Customer customer, ListOfCustomer fellows) {
+       return fellows.getCustomers().contains(customer);
+    }
+
     public int getPosition() {
         return position;
     }
@@ -108,30 +131,4 @@ public abstract class Customer implements User {
         this.position = position;
     }
 
-    public HashMap<Customer, List<Customer>> getGroup() {
-        return group;
-    }
-
-
-    public ListOfCustomer getFellows() {
-        return fellows;
-    }
-
-    public void addFellows(ListOfCustomer fellows) {
-        if (!ifContainInTheQueue(this, fellows)) {
-            fellows.getQueue().add(this);
-            fellows.addFellowLeader(this);
-        }
-    }
-
-    public void removeFellows(ListOfCustomer fellows) {
-        if (ifContainInTheQueue(this, fellows)) {
-            fellows.getQueue().remove(this);
-            fellows.removeFellowLeader(this);
-        }
-    }
-
-    private boolean ifContainInTheQueue(Customer customer, ListOfCustomer fellows) {
-       return fellows.getQueue().contains(customer);
-    }
 }

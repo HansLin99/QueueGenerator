@@ -26,25 +26,25 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
     @Test
     void testAddCustomer() {
-        assertEquals(0, testQ.getQueue().size());
+        assertEquals(0, testQ.getCustomers().size());
         testQ.addCustomer(testC);
-        assertTrue(testQ.getQueue().contains(testC));
+        assertTrue(testQ.getCustomers().contains(testC));
     }
 
     @Test
     void testRemoveCustomer() {
         testQ.addCustomer(testC);
-        assertTrue(testQ.getQueue().contains(testC));
+        assertTrue(testQ.getCustomers().contains(testC));
         testQ.removeCustomer(testC);
-        assertFalse(testQ.getQueue().contains(testC));
+        assertFalse(testQ.getCustomers().contains(testC));
     }
 
     @Test
     void testResetQueue() {
         testQ.addCustomer(testC);
-        assertEquals(1, testQ.getQueue().size());
+        assertEquals(1, testQ.getCustomers().size());
         testQ.resetQueue();
-        assertEquals(0, testQ.getQueue().size());
+        assertEquals(0, testQ.getCustomers().size());
 
     }
 
@@ -57,26 +57,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         assertEquals(1, testQ.getCustomerSequence(testC));
     }
 
-    @Test
-    void testThisCustomer() {
-        testC.setName("Hans");
-        testQ.thisCustomer(testC);
-        assertEquals(1, testC.getPosition());
-        testQ.addCustomer(testC);
-        assertEquals(1, testC.getPosition());
-        Customer testR = new RegularCustomer();
-        testR.setName("Kai");
-        testQ.thisCustomer(testR);
-        assertEquals(2, testR.getPosition());
-        testQ.addCustomer(testR);
-        testQ.thisCustomer(testR);
-        assertEquals(2, testR.getPosition());
-    }
 
-
-    @Test
-     void testSearchCustomer(){
-
-    }
 
 }

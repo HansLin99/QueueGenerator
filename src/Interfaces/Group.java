@@ -1,9 +1,6 @@
 package Interfaces;
 
 import CustomerData.Customer;
-import Exceptions.WrongInstructionException;
-
-import java.util.ArrayList;
 
 public interface Group {
     //REQUIRE:position greater than or equal to 0 and less than the s
@@ -26,12 +23,5 @@ public interface Group {
     //MODIFY:nothing
     //EFFECT:get the customer in given position
     int getCustomerSequence(Customer c);
-
-    //MODIFY:this
-    //EFFECT:if the customer is in the queue, print the position, otherwise generate a new position
-    void thisCustomer(Customer c);
-
-    //EFFECT:command to next step
-    void functions(Customer c, String s) throws WrongInstructionException;
 
 }
