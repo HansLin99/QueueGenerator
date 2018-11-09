@@ -10,11 +10,11 @@ import Exceptions.WrongInstructionException;
 import java.io.IOException;
 import java.util.Scanner;
 
-class Interaction {
+class InteractionProcess {
      private ListOfCustomer queue;
 
 
-    public Interaction() throws IOException {
+    public InteractionProcess() throws IOException {
         queue = new ListOfCustomer();
         queue.readData();
     }
