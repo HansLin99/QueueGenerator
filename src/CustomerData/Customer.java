@@ -3,12 +3,13 @@ package CustomerData;
 
 import Exceptions.UserNotInQueueException;
 import Interfaces.User;
+import observer.Observer;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Customer implements User {
+public abstract class Customer implements User , Observer {
 
 
     private String name = "";
@@ -26,7 +27,7 @@ public abstract class Customer implements User {
 
     //MODIFIES:this
     //EFFECTS:add the customer and his fellow to a group
-    public void addCustomerIntoGroup(Customer fellowLeader, ListOfCustomer fellows) {
+    void addCustomerIntoGroup(Customer fellowLeader, ListOfCustomer fellows) {
         this.fellows = fellows;
         group.put(fellowLeader, fellowLeader.getFellows().getCustomers());
     }

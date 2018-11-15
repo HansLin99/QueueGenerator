@@ -68,6 +68,10 @@ class InteractionProcess {
             } finally {
                 System.out.println("Operating~");
             }
+            System.out.println("Please enter yes if you want to update the queue, no otherwise.");
+            if (s.nextLine().equals("yes")){
+                queue.moveForwardQueue();
+            }
             System.out.println("Enter quit if you want to quit");
             if (s.nextLine().equals("quit")){
                 break;
