@@ -2,14 +2,13 @@ package CustomerData;
 
 
 import Exceptions.UserNotInQueueException;
-import Interfaces.User;
 import observer.Observer;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Customer implements User , Observer {
+public abstract class Customer implements Observer {
 
 
     private String name = "";
@@ -73,13 +72,6 @@ public abstract class Customer implements User , Observer {
     //EFFECTS:change the customer's phone number to the phoneNum entered
     public void setPhoneNumber(String phoneNum){
         this.phoneNumber = phoneNum;
-    }
-
-    public void addCustomer(Customer customer, String name, String phoneNum) {
-        if (name.equals("")){
-        setPhoneNumber(phoneNum);}
-        else if (phoneNum.equals("")) {
-            setName(name);}
     }
 
     public abstract void addCustomer(List<Customer> queue, Customer customer);

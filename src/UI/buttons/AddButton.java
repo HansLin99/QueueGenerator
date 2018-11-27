@@ -64,9 +64,15 @@ public class AddButton extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String nameEntered = name.getText();
         String phoneNumEntered = phoneNum.getText();
+        if (!queue.ifAlreadyInQueue(nameEntered)){
         ReservedCustomer customer = new ReservedCustomer();
         customer.setName(nameEntered);
         customer.setPhoneNumber(phoneNumEntered);
         queue.addCustomer(customer);
+        } else {
+            output.setText("The customer you enter is already in the queue. Please re-enter a customer.");
+            name.setText("");
+            phoneNum.setText("");
+        }
     }
 }
