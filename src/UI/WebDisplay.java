@@ -40,6 +40,7 @@ public class WebDisplay extends JPanel {
             }
 
             jsonWeather = sb.toString();
+            System.out.println(jsonWeather);
 
         } catch (UnknownHostException e){
             System.out.println("Internet Error!");

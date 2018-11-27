@@ -2,14 +2,13 @@ package CustomerData;
 
 
 import Exceptions.UserNotInQueueException;
-import Interfaces.User;
 import observer.Observer;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Customer implements User , Observer {
+public abstract class Customer implements Observer {
 
 
     private String name = "";

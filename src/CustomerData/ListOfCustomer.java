@@ -10,10 +10,9 @@ import Exceptions.UserNotInQueueException;
 import FileReaderWriter.FileReaderUser1;
 import FileReaderWriter.FileWriterUser1;
 import Interfaces.Group;
-import Interfaces.User;
 import observer.Subject;
 
-public class ListOfCustomer extends Subject implements User, Group  {
+public class ListOfCustomer extends Subject implements Group  {
     private List<Customer> customers;
     private Customer fellowLeader;
     private boolean notInTheQueue = false;
@@ -30,6 +29,7 @@ public class ListOfCustomer extends Subject implements User, Group  {
         this.fellowLeader = fellowLeader;
         fellowLeader.addCustomerIntoGroup(this.fellowLeader, fellows);
     }
+
 
     //REQUIRE:position greater than or equal to 0 and less than the s
     // ize-1
@@ -87,10 +87,9 @@ public class ListOfCustomer extends Subject implements User, Group  {
     }
 
     //EFFECTS:if customer's name could be found in the customers, return true, false otherwise
-    public boolean ifAlreadyInQueue(Customer c) {
+    public boolean ifAlreadyInQueue(String name) {
         for (Customer customer : customers) {
-            if (customer.getName().equals(c.getName())) {
-                c.setPosition(customer.getPosition());
+            if (customer.getName().equals(name)) {
                 return true;
             }
         }
@@ -141,13 +140,16 @@ public class ListOfCustomer extends Subject implements User, Group  {
     }
 
     public void moveForwardQueue() {
-        customers.remove(0);
-        notifyObserver();
-    }
+        if (customers.size()!=0) {
+            customers.remove(0);
 
-    @Override
-    public void addCustomer(Customer c, String name, String phoneNum) {
-
+            for (Customer customer : customers) {
+                if (customer.getPosition() > 0) {
+                    customer.setPosition(customer.getPosition() - 1);
+                }
+            }
+            notifyObserver();
+        }
     }
 
     public List<Customer> getCustomers() {
@@ -168,4 +170,6 @@ public class ListOfCustomer extends Subject implements User, Group  {
             fellowLeader.removeFellows(this);
         }
     }
+
+
 }

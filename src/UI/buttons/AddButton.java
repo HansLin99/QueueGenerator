@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 public class AddButton extends JFrame implements ActionListener {
     private JLabel nameInstruction;
@@ -19,32 +21,33 @@ public class AddButton extends JFrame implements ActionListener {
     private JButton confirm;
     private JTextField name;
     private JTextField phoneNum;
-    private ListOfCustomer queue;
+    private static ListOfCustomer queue;
 
     public AddButton(ListOfCustomer queue) {
         super("Please enter customer information");
         this.queue = queue;
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
-        setSize(WIDTH, HEIGHT);
+        setSize(500, 200);
         setLayout(new GridLayout(3, 0));
 
         namePanel = new JPanel();
         phoneNumPanel = new JPanel();
         confirmPanel = new JPanel();
         confirm = new JButton("Confirm");
-        name = new JTextField();
-        phoneNum = new JTextField();
+        name = new JTextField(10);
+        phoneNum = new JTextField(10);
         nameInstruction = new JLabel("Please enter the name of the customer:");
         phoneNumInstruction = new JLabel("Please enter the phone number of the customer:");
         output = new JLabel();
 
-        namePanel.add(name);
         namePanel.add(nameInstruction);
-        phoneNumPanel.add(phoneNum);
+        namePanel.add(name);
         phoneNumPanel.add(phoneNumInstruction);
-        confirmPanel.add(confirm);
+        phoneNumPanel.add(phoneNum);
         confirmPanel.add(output);
+        confirmPanel.add(confirm);
+
 
         Container pane = getContentPane();
 
@@ -52,7 +55,7 @@ public class AddButton extends JFrame implements ActionListener {
         pane.add(phoneNumPanel);
         pane.add(confirmPanel);
 
-        pack();
+
         setVisible(true);
 
         confirm.addActionListener(this);
@@ -64,9 +67,25 @@ public class AddButton extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String nameEntered = name.getText();
         String phoneNumEntered = phoneNum.getText();
-        ReservedCustomer customer = new ReservedCustomer();
-        customer.setName(nameEntered);
-        customer.setPhoneNumber(phoneNumEntered);
-        queue.addCustomer(customer);
+        if (queue.ifAlreadyInQueue(nameEntered)) {
+            ReservedCustomer customer = new ReservedCustomer();
+            customer.setName(nameEntered);
+            customer.setPhoneNumber(phoneNumEntered);
+            customer.setPosition(queue.getCustomers().size() + 1);
+            queue.addCustomer(customer);
+            output.setText("Add successfully!");
+            name.setText("");
+            phoneNum.setText("");
+            try {
+                queue.saveData();
+            } catch (FileNotFoundException | UnsupportedEncodingException e1) {
+                e1.printStackTrace();
+            }
+
+        } else {
+            output.setText("The customer you enter is already in the queue. Please re-enter a customer.");
+            name.setText("");
+            phoneNum.setText("");
+        }
     }
 }

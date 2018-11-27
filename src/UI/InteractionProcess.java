@@ -58,7 +58,7 @@ class InteractionProcess {
             } catch (WrongInstructionException e) {
                 System.out.println("The instruction you given is invalid.");
             }
-            thisCustomer(customer, queue);
+//            thisCustomer(customer, queue);
             System.out.println("Please select a function (AddButton,RemoveButton,reset,SearchButton or pass (no function))");
             try {
                 functions(customer, queue, s.nextLine());
@@ -92,22 +92,22 @@ class InteractionProcess {
 
     //MODIFY:this
     //EFFECT:if the customer is in the customers, print the position, otherwise generate a new position
-    public void thisCustomer(Customer c, ListOfCustomer queue) {
-        Scanner s = new Scanner(System.in);
-        if (c.isIfReserved()) {
-            System.out.println("Please enter the position of reserved customer:");
-            c.setPosition(Integer.parseInt(s.nextLine()));
-            System.out.println("Your reserved position has been saved!");
-        } else if (queue.ifAlreadyInQueue(c)) {
-            System.out.println("You are already in customers and ");
-            System.out.println("Your current position in the customers is " + c.getPosition());
-        } else {
-            c.setPosition(generatePosition(queue.getCustomers().size()));
-            System.out.println("Please wait! ");
-            System.out.println("You position in the customers is " + c.getPosition());
-        }
-
-    }
+//    public void thisCustomer(Customer c, ListOfCustomer queue) {
+//        Scanner s = new Scanner(System.in);
+//        if (c.isIfReserved()) {
+//            System.out.println("Please enter the position of reserved customer:");
+//            c.setPosition(Integer.parseInt(s.nextLine()));
+//            System.out.println("Your reserved position has been saved!");
+//        } else if (queue.ifAlreadyInQueue(c)) {
+//            System.out.println("You are already in customers and ");
+//            System.out.println("Your current position in the customers is " + c.getPosition());
+//        } else {
+//            c.setPosition(generatePosition(queue.getCustomers().size()));
+//            System.out.println("Please wait! ");
+//            System.out.println("You position in the customers is " + c.getPosition());
+//        }
+//
+//    }
 
     //REQUIRE:P greater or equal to 0 and less than the size of customers
     //MODIFY:field: Customer position
