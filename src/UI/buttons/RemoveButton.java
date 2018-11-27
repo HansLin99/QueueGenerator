@@ -3,15 +3,20 @@ package UI.buttons;
 import CustomerData.Customer;
 import CustomerData.ListOfCustomer;
 import CustomerData.ReservedCustomer;
+import UI.FunctionMain;
+import com.sun.javaws.util.JfxHelper;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-public class RemoveButton extends JFrame implements ActionListener {
+public class RemoveButton extends JFrame implements ActionListener , WindowListener {
     private JLabel nameInstruction;
     private JLabel output;
     private JPanel namePanel;
@@ -19,11 +24,14 @@ public class RemoveButton extends JFrame implements ActionListener {
     private JButton confirm;
     private JTextField name;
     private static ListOfCustomer queue;
+    private static FunctionMain functionMain;
 
-    public RemoveButton(ListOfCustomer queue) {
+    public RemoveButton(ListOfCustomer queue, FunctionMain functionMain) {
         super("Please enter customer information");
         this.queue = queue;
+        this.functionMain = functionMain;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        addWindowListener(this);
         setResizable(false);
         setSize(500, 150);
         setLayout(new GridLayout(2, 0));
@@ -75,5 +83,44 @@ public class RemoveButton extends JFrame implements ActionListener {
             output.setText("The customer you enter is not in the queue. Please re-enter a customer.");
             name.setText("");
         }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        try {
+            functionMain.getInstruction().setText(functionMain.infoDisplay());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }

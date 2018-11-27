@@ -30,7 +30,7 @@ public class FunctionMain extends JFrame implements ActionListener {
     private JLabel instruction;
     private JPanel instructions;
 
-    FunctionMain() throws IOException {
+    public FunctionMain() throws IOException {
         super("Functions");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -57,8 +57,7 @@ public class FunctionMain extends JFrame implements ActionListener {
         buttons.add(moveOneForward);
         buttons.add(quit);
 
-        instruction = new JLabel("<html>" + CurrentQueueInfo().replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "<html>");
+        instruction = new JLabel(infoDisplay());
         instructions.add(instruction);
 
         pane.add(instructions, BorderLayout.NORTH);
@@ -78,7 +77,7 @@ public class FunctionMain extends JFrame implements ActionListener {
 
     }
 
-    private String CurrentQueueInfo() throws IOException {
+    String CurrentQueueInfo() throws IOException {
         StringBuilder instruction = new StringBuilder("The current queue is :"
                 + "\n");
 
@@ -96,9 +95,9 @@ public class FunctionMain extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(addCustomer)) {
-            new AddButton(queue);
+            new AddButton(queue,this);
         } else if (e.getSource().equals(removeCustomer)) {
-            new RemoveButton(queue);
+            new RemoveButton(queue,this);
         } else if (e.getSource().equals(clearQueue)) {
             queue.resetQueue();
             try {
@@ -107,13 +106,12 @@ public class FunctionMain extends JFrame implements ActionListener {
                 System.out.println("Save failed! Please check the queue!");
             }
             try {
-                instruction.setText("<html>" + CurrentQueueInfo().replaceAll("<", "&lt;")
-                        .replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "<html>");
+                instruction.setText(infoDisplay());
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
         } else if (e.getSource().equals(searchCustomer)){
-            new SearchButton(queue);
+            new SearchButton(queue,this);
         } else if (e.getSource().equals(quit)) {
             dispose();
             try {
@@ -125,13 +123,25 @@ public class FunctionMain extends JFrame implements ActionListener {
             queue.moveForwardQueue();
             try {
                 queue.saveData();
-                instruction.setText("<html>" + CurrentQueueInfo().replaceAll("<", "&lt;")
-                        .replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "<html>");
+                instruction.setText(infoDisplay());
             } catch (FileNotFoundException | UnsupportedEncodingException e1) {
                 System.out.println("Save failed! Please check!");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
         }
+    }
+
+    public JLabel getInstruction() {
+        return instruction;
+    }
+
+    public void setInstruction(JLabel instruction) {
+        this.instruction = instruction;
+    }
+
+    public String infoDisplay() throws IOException {
+        return "<html>" + CurrentQueueInfo().replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "<html>";
     }
 }

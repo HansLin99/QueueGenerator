@@ -3,15 +3,19 @@ package UI.buttons;
 
 import CustomerData.ListOfCustomer;
 import CustomerData.ReservedCustomer;
+import UI.FunctionMain;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-public class AddButton extends JFrame implements ActionListener {
+public class AddButton extends JFrame implements ActionListener, WindowListener {
     private JLabel nameInstruction;
     private JLabel phoneNumInstruction;
     private JLabel output;
@@ -22,12 +26,15 @@ public class AddButton extends JFrame implements ActionListener {
     private JTextField name;
     private JTextField phoneNum;
     private static ListOfCustomer queue;
+    private static FunctionMain functionMain;
 
-    public AddButton(ListOfCustomer queue) {
+    public AddButton(ListOfCustomer queue, FunctionMain functionMain) {
         super("Please enter customer information");
         this.queue = queue;
+        this.functionMain = functionMain;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(this);
         setSize(500, 200);
         setLayout(new GridLayout(3, 0));
 
@@ -89,5 +96,44 @@ public class AddButton extends JFrame implements ActionListener {
             name.setText("");
             phoneNum.setText("");
         }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        try {
+            functionMain.getInstruction().setText(functionMain.infoDisplay());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }
