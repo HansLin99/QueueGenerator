@@ -9,21 +9,24 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 
 public class WebDisplay extends JPanel {
 
-    static String json = "";
+    static String jsonWeather = "";
 
-    public void displayWelcome() throws IOException {
+    public WebDisplay() throws IOException {
 
         BufferedReader br = null;
 
         try {
-            String apikey = "48c4e7336baa1fce57ddcb33b8b107fc";
-            String londonweatherquery = "https://api.openweathermap.org/data/2.5/weather?q=Vancouver,ca&APPID=";
-            String theURL = londonweatherquery + apikey;
+            String apiKey = "48c4e7336baa1fce57ddcb33b8b107fc";
+            String londonWeatherQuery = "https://api.openweathermap.org/data/2.5/weather?q=Vancouver,ca&APPID=";
+            String theURL = londonWeatherQuery + apiKey;
             URL url = new URL(theURL);
+
+
             br = new BufferedReader(new InputStreamReader(url.openStream()));
 
             String line;
@@ -36,10 +39,12 @@ public class WebDisplay extends JPanel {
                 sb.append(System.lineSeparator());
             }
 
-            json = sb.toString();
-            parseJson();
+            jsonWeather = sb.toString();
 
-        } finally {
+        } catch (UnknownHostException e){
+            System.out.println("Internet Error!");
+        }
+        finally {
 
             if (br != null) {
                 br.close();
@@ -48,41 +53,42 @@ public class WebDisplay extends JPanel {
     }
 
 
-    public void parseJson() {
-        JSONObject obj = new JSONObject(json);
+    public String parseJson() {
+        JSONObject obj = new JSONObject(jsonWeather);
         String city = obj.getString("name");
         String country = obj.getJSONObject("sys").getString("country");
-
-
-        System.out.println("The weather for " + city + ", " + country + " is ");
-        printMainWeatherInfo(obj);
-        printStatistic(obj);
-
+        StringBuilder weatherForecast;
+        weatherForecast = new StringBuilder("The weather for " + city + ", " + country + " is " + "\n");
+        weatherForecast.append(printStatistic(obj));
+        return weatherForecast.toString();
 
 
     }
 
-    private void printMainWeatherInfo(JSONObject jo) {
+
+    private String printStatistic(JSONObject jo) {
+        String weather;
+        String weatherPiece1 = "";
+        String weatherPiece2 = "";
         JSONArray arr = jo.getJSONArray("weather");
-        for (int i = 0; i < arr.length(); i++) {
-            System.out.println(arr.getJSONObject(i).getString("main"));
-
-        }
-
-        for (int i = 0; i < arr.length(); i++) {
-            System.out.println(arr.getJSONObject(i).getString("description"));
-        }
-    }
-
-    private void printStatistic(JSONObject jo) {
         JSONObject main = jo.getJSONObject("main");
         JSONObject wind = jo.getJSONObject("wind");
-        System.out.println("Temperature: " + main.getDouble("temp"));
-        System.out.println("Pressure: " + main.getDouble("pressure"));
-        System.out.println("Humidity: " + main.getDouble("humidity"));
-        System.out.println("Visibility: " + jo.getDouble("visibility"));
-        System.out.println("Wind Speed: " + wind.getDouble("speed"));
-        System.out.println("Wind degree: " + wind.getDouble("deg"));
+        for (int i = 0; i < arr.length(); i++) {
+            weatherPiece1 = arr.getJSONObject(i).getString("main");
+
+        }
+
+        for (int i = 0; i < arr.length(); i++) {
+            weatherPiece2 = arr.getJSONObject(i).getString("description");
+        }
+        weather = weatherPiece1 + "\n" + weatherPiece2 + "\n" +
+                "Temperature: " + main.getDouble("temp") + "\n" +
+                "Pressure: " + main.getDouble("pressure") + "\n" +
+                "Humidity: " + main.getDouble("humidity") + "\n" +
+                "Visibility: " + jo.getDouble("visibility") + "\n" +
+                "Wind Speed: " + wind.getDouble("speed") + "\n" +
+                "Wind degree: " + wind.getDouble("deg") + "\n";
+        return weather;
     }
 }
 
