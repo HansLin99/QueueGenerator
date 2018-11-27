@@ -35,7 +35,7 @@ public class testExceptions {
 
     @Test
     void testSearchCustomerWrongInstructionException(){
-        String testFunction = "search";
+        String testFunction = "Search";
 //        try {
 //            testQueue.innerFunction(testFunction, hans);
 //        } catch (WrongInstructionException e) {

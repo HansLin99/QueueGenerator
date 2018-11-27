@@ -6,17 +6,17 @@ public interface Group {
     //REQUIRE:position greater than or equal to 0 and less than the s
     // ize-1
     //MODIFY:this
-    //EFFECT:remove any customer out of the queue if not in the queue
+    //EFFECT:Remove any customer out of the queue if not in the queue
     void removeCustomer(Customer c);
 
     //REQUIRE:position greater than or equal to 0 and less than the size-1
     //MODIFY:this
-    //EFFECT:add customer into the queue
+    //EFFECT:Add customer into the queue
     void addCustomer(Customer c);
 
     //REQUIRE:nothing
     //MODIFY:this
-    //EFFECT:reset the queue size to 0, clear all customer Info
+    //EFFECT:reset the queue size to 0, Remove all customer Info
     void resetQueue();
 
     //REQUIRE:position greater than or equal to 0 and less than the size-1

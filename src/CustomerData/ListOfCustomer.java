@@ -25,7 +25,7 @@ public class ListOfCustomer extends Subject implements User, Group  {
 
 
     //MODIFIES:this
-    //EFFECT: pass the customer to add his/her fellows
+    //EFFECT: pass the customer to Add his/her fellows
     public void addFellows(Customer fellowLeader, ListOfCustomer fellows) {
         this.fellowLeader = fellowLeader;
         fellowLeader.addCustomerIntoGroup(this.fellowLeader, fellows);
@@ -34,23 +34,23 @@ public class ListOfCustomer extends Subject implements User, Group  {
     //REQUIRE:position greater than or equal to 0 and less than the s
     // ize-1
     //MODIFY:this
-    //EFFECT:remove any customer out of the customers if not in the customers
+    //EFFECT:Remove any customer out of the customers if not in the customers
     public void removeCustomer(Customer c) {
         if (isContains(c, customers)) {
             customers.remove(c.getPosition());
-        } else System.out.println("The customer you want to remove is not in the customers.");
+        } else System.out.println("The customer you want to Remove is not in the customers.");
     }
 
 
     @Override
     //REQUIRE:position greater than or equal to 0 and less than the size-1
     //MODIFY:this
-    //EFFECT:add customer into the customers
+    //EFFECT:Add customer into the customers
     public void addCustomer(Customer c) {
         if (!isContains(c, customers)) {
            customers.add(c);
            addObserver(c);
-        } else System.out.println("The customer you want to add is already in the customers.");
+        } else System.out.println("The customer you want to Add is already in the customers.");
     }
 
     private boolean isContains(Customer c, List<Customer> queue) {
@@ -60,7 +60,7 @@ public class ListOfCustomer extends Subject implements User, Group  {
 
     //REQUIRE:nothing
     //MODIFY:this
-    //EFFECT:reset the customers size to 0, clear all customer Info
+    //EFFECT:reset the customers size to 0, Remove all customer Info
     public void resetQueue() {
         customers.clear();
     }
@@ -98,7 +98,7 @@ public class ListOfCustomer extends Subject implements User, Group  {
     }
 
 
-    //EFFECTS:search for customer who has the given name and print his information
+    //EFFECTS:Search for customer who has the given name and print his information
     public void searchCustomer(String name) throws UserNotInQueueException {
         Customer searchingCustomer = customerFoundByName(name);
         if (!(searchingCustomer == null)) {

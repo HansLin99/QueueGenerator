@@ -26,14 +26,14 @@ public abstract class Customer implements User , Observer {
 
 
     //MODIFIES:this
-    //EFFECTS:add the customer and his fellow to a group
+    //EFFECTS:Add the customer and his fellow to a group
     void addCustomerIntoGroup(Customer fellowLeader, ListOfCustomer fellows) {
         this.fellows = fellows;
         group.put(fellowLeader, fellowLeader.getFellows().getCustomers());
     }
 
     //MODIFIES:this
-    //EFFECTS:add the customer into fellow
+    //EFFECTS:Add the customer into fellow
     public void addFellows(Customer customer) {
         if (!customer.getFellows().getCustomers().contains(customer)) {
             customer.getFellows().getCustomers().add(customer);
@@ -42,7 +42,7 @@ public abstract class Customer implements User , Observer {
 
 
     //MODIFIES:this
-    //EFFECTS:remove the customer into fellow
+    //EFFECTS:Remove the customer into fellow
     public void removeFellows(Customer customer) throws UserNotInQueueException {
         if (!customer.getFellows().getCustomers().contains(customer)){
             throw new UserNotInQueueException();
