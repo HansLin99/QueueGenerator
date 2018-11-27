@@ -2,9 +2,9 @@ package UI;
 
 import CustomerData.Customer;
 import CustomerData.ListOfCustomer;
-import UI.buttons.Add;
-import UI.buttons.Remove;
-import UI.buttons.Search;
+import UI.buttons.AddButton;
+import UI.buttons.RemoveButton;
+import UI.buttons.SearchButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,10 +36,10 @@ public class FunctionMain extends JFrame implements ActionListener {
 
 
         Container pane = getContentPane();
-        addCustomer = new JButton("Add Customer");
-        removeCustomer = new JButton("Remove Customer");
+        addCustomer = new JButton("AddButton Customer");
+        removeCustomer = new JButton("RemoveButton Customer");
         clearQueue = new JButton("Clear Queue");
-        searchCustomer = new JButton("Search Customer");
+        searchCustomer = new JButton("SearchButton Customer");
         quit = new JButton("Quit");
         JPanel buttons = new JPanel();
         instructions = new JPanel();
@@ -96,9 +96,9 @@ public class FunctionMain extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(addCustomer)) {
-            new Add(queue);
+            new AddButton(queue);
         } else if (e.getSource().equals(removeCustomer)) {
-            new Remove();
+            new RemoveButton();
         } else if (e.getSource().equals(clearQueue)) {
             queue.resetQueue();
             try {
@@ -109,7 +109,7 @@ public class FunctionMain extends JFrame implements ActionListener {
             instructions.setVisible(false);
             getContentPane().remove(instructions);
         } else if (e.getSource().equals(searchCustomer)){
-            new Search();
+            new SearchButton();
         } else if (e.getSource().equals(quit)) {
             dispose();
             try {

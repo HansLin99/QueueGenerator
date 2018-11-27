@@ -1,8 +1,7 @@
 package UI.buttons;
 
-import CustomerData.Customer;
+
 import CustomerData.ListOfCustomer;
-import CustomerData.RegularCustomer;
 import CustomerData.ReservedCustomer;
 
 import javax.swing.*;
@@ -10,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Add extends JFrame implements ActionListener {
+public class AddButton extends JFrame implements ActionListener {
     private JLabel nameInstruction;
     private JLabel phoneNumInstruction;
     private JLabel output;
@@ -22,7 +21,7 @@ public class Add extends JFrame implements ActionListener {
     private JTextField phoneNum;
     private ListOfCustomer queue;
 
-    public Add(ListOfCustomer queue) {
+    public AddButton(ListOfCustomer queue) {
         super("Please enter customer information");
         this.queue = queue;
         setDefaultCloseOperation(EXIT_ON_CLOSE);

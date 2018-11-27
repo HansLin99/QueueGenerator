@@ -59,7 +59,7 @@ class InteractionProcess {
                 System.out.println("The instruction you given is invalid.");
             }
             thisCustomer(customer, queue);
-            System.out.println("Please select a function (Add,Remove,reset,Search or pass (no function))");
+            System.out.println("Please select a function (AddButton,RemoveButton,reset,SearchButton or pass (no function))");
             try {
                 functions(customer, queue, s.nextLine());
             } catch (WrongInstructionException e){
@@ -122,16 +122,16 @@ class InteractionProcess {
     public void functions(Customer c, ListOfCustomer queue, String function) throws WrongInstructionException {
         Scanner s = new Scanner(System.in);
         switch (function) {
-            case "Add":
+            case "AddButton":
                 c.addCustomer(queue.getCustomers(), c);
                 break;
-            case "Remove":
+            case "RemoveButton":
                 queue.removeCustomer(c);
                 break;
             case "reset":
                 queue.resetQueue();
                 break;
-            case "Search":
+            case "SearchButton":
                 do {
                     System.out.println("Please enter the name of the customer: ");
                     String name = s.nextLine();
