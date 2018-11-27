@@ -1,29 +1,32 @@
 package UI;
 
 import org.json.JSONException;
+import sun.tools.jps.Jps;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 public class SequenceStarter extends JFrame implements ActionListener {
 
-    private static final int WIDTH = 700;
-    private static final int HEIGHT = 400;
+    private static final int WIDTH = 500;
+    private static final int HEIGHT = 500;
 
-//    private JLabel weatherInfo;
-//    private JFrame main;
-//    private Container panel;
-//    private JButton enter;
+    private JPanel weather;
+    private JPanel enterButton;
+//    private JLabel background;
+//    private JPanel backgroundPanel;
 
 
     public SequenceStarter() throws IOException, JSONException {
 
         super("Sequence Generator");
-        setLocation(500,300);
 
+        setLocation(500,300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(WIDTH,HEIGHT);
         setResizable(false);
@@ -33,19 +36,32 @@ public class SequenceStarter extends JFrame implements ActionListener {
 
         JButton enter = new JButton("Enter");
         WebDisplay wb = new WebDisplay();
+        weather = new JPanel();
+//        background= new JLabel();
+//        backgroundPanel = new JPanel();
+//        background.setIcon(new ImageIcon("background.jpg"));
+//        backgroundPanel.add(background);
+        enterButton = new JPanel();
         JLabel weatherInfo = new JLabel("<html><div style='text-align: center;'>"+
                 wb.parseJson().replaceAll("<","&lt;")
                         .replaceAll(">", "&gt;").replaceAll("\n", "<br/>")
                 +"</div></html>");
+        Font font = new Font("SansSerif", Font.ITALIC, 35);
+        weatherInfo.setFont(font);
+        weather.add(weatherInfo);
+        enterButton.add(enter);
         Container panel = getContentPane();
 
-        panel.add(weatherInfo, BorderLayout.PAGE_START);
-        panel.add(enter, BorderLayout.SOUTH);
-        pack();
-        setVisible(true);
+//        panel.add(backgroundPanel);
+        panel.add(weather, BorderLayout.PAGE_START);
+        panel.add(enterButton, BorderLayout.SOUTH);
+
 
         enter.addActionListener(this);
 
+
+
+        setVisible(true);
 
 
 
@@ -66,6 +82,8 @@ public class SequenceStarter extends JFrame implements ActionListener {
         }
 
     }
+
+
 
 
 

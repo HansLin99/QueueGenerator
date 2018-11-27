@@ -49,6 +49,7 @@ public class FunctionMain extends JFrame implements ActionListener {
         JPanel buttons = new JPanel();
         instructions = new JPanel();
         moveOneForward = new JButton("Update one");
+        Font font = new Font("SansSerif", Font.BOLD, 35);
 
 
         buttons.add(addCustomer);
@@ -59,6 +60,8 @@ public class FunctionMain extends JFrame implements ActionListener {
         buttons.add(quit);
 
         instruction = new JLabel(infoDisplay());
+        instruction.setFont(font);
+        instruction.setForeground(Color.PINK);
         instructions.add(instruction);
 
         pane.add(instructions, BorderLayout.NORTH);

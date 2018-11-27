@@ -60,7 +60,7 @@ public class WebDisplay extends JPanel {
         String city = obj.getString("name");
         String country = obj.getJSONObject("sys").getString("country");
         StringBuilder weatherForecast;
-        weatherForecast = new StringBuilder("The weather for " + city + ", " + country + " is " + "\n");
+        weatherForecast = new StringBuilder("Weather for \n" + city + ", " + country + " is " + "\n");
         weatherForecast.append(printStatistic(obj));
         return weatherForecast.toString();
 
