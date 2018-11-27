@@ -1,6 +1,7 @@
 package UI;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -54,7 +55,7 @@ public class WebDisplay extends JPanel {
     }
 
 
-    public String parseJson() {
+    public String parseJson() throws JSONException {
         JSONObject obj = new JSONObject(jsonWeather);
         String city = obj.getString("name");
         String country = obj.getJSONObject("sys").getString("country");
@@ -67,7 +68,7 @@ public class WebDisplay extends JPanel {
     }
 
 
-    private String printStatistic(JSONObject jo) {
+    private String printStatistic(JSONObject jo) throws JSONException {
         String weather;
         String weatherPiece1 = "";
         String weatherPiece2 = "";

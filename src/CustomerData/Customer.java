@@ -74,13 +74,6 @@ public abstract class Customer implements Observer {
         this.phoneNumber = phoneNum;
     }
 
-    public void addCustomer(Customer customer, String name, String phoneNum) {
-        if (name.equals("")){
-        setPhoneNumber(phoneNum);}
-        else if (phoneNum.equals("")) {
-            setName(name);}
-    }
-
     public abstract void addCustomer(List<Customer> queue, Customer customer);
 
     public ListOfCustomer getFellows() {
