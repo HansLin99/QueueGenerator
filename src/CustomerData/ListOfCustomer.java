@@ -142,6 +142,9 @@ public class ListOfCustomer extends Subject implements User, Group  {
 
     public void moveForwardQueue() {
         customers.remove(0);
+        for (Customer customer:customers){
+            customer.setPosition(customer.getPosition()-1);
+        }
         notifyObserver();
     }
 

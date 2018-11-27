@@ -5,6 +5,7 @@ import CustomerData.ListOfCustomer;
 import UI.buttons.AddButton;
 import UI.buttons.RemoveButton;
 import UI.buttons.SearchButton;
+import org.json.JSONException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,7 @@ public class FunctionMain extends JFrame implements ActionListener {
 
     private static final int WIDTH = 700;
     private static final int HEIGHT = 400;
-    private ListOfCustomer queue;
+    private static ListOfCustomer queue;
     private JButton addCustomer;
     private JButton removeCustomer;
     private JButton clearQueue;
@@ -26,6 +27,7 @@ public class FunctionMain extends JFrame implements ActionListener {
     private JButton searchCustomer;
     private JButton moveOneForward;
     private JPanel instructions;
+    private JLabel instruction;
 
     FunctionMain() throws IOException {
         super("Functions");
@@ -36,10 +38,11 @@ public class FunctionMain extends JFrame implements ActionListener {
 
 
         Container pane = getContentPane();
-        addCustomer = new JButton("AddButton Customer");
-        removeCustomer = new JButton("RemoveButton Customer");
+        queue = new ListOfCustomer();
+        addCustomer = new JButton("Add Customer");
+        removeCustomer = new JButton("Remove Customer");
         clearQueue = new JButton("Clear Queue");
-        searchCustomer = new JButton("SearchButton Customer");
+        searchCustomer = new JButton("Search Customer");
         quit = new JButton("Quit");
         JPanel buttons = new JPanel();
         instructions = new JPanel();
@@ -52,7 +55,9 @@ public class FunctionMain extends JFrame implements ActionListener {
         buttons.add(clearQueue);
         buttons.add(moveOneForward);
         buttons.add(quit);
-        instructions.add(initializeQueueInfoDisplay());
+        instruction = new JLabel("<html>" + CurrentQueueInfo().replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "<html>");
+        instructions.add(instruction);
 
         pane.add(instructions, BorderLayout.CENTER);
         pane.add(buttons, BorderLayout.SOUTH);
@@ -71,17 +76,9 @@ public class FunctionMain extends JFrame implements ActionListener {
 
     }
 
-    private JLabel initializeQueueInfoDisplay() throws IOException {
-        JLabel instruction = new JLabel("<html>" + CurrentQueueInfo().replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "<html>");
-
-        return instruction;
-    }
-
     private String CurrentQueueInfo() throws IOException {
         StringBuilder instruction = new StringBuilder("The current queue is :"
                 + "\n");
-        queue = new ListOfCustomer();
         queue.readData();
 
         for (Customer customer : queue.getCustomers()) {
@@ -106,7 +103,7 @@ public class FunctionMain extends JFrame implements ActionListener {
             } catch (FileNotFoundException | UnsupportedEncodingException e1) {
                 System.out.println("Save failed! Please check the queue!");
             }
-            instructions.setVisible(false);
+            instruction.setText("");
             getContentPane().remove(instructions);
         } else if (e.getSource().equals(searchCustomer)){
             new SearchButton();
@@ -116,13 +113,19 @@ public class FunctionMain extends JFrame implements ActionListener {
                 new SequenceStarter();
             } catch (IOException e1) {
                 System.out.println("Error!");
+            } catch (JSONException e1) {
+                e1.printStackTrace();
             }
         } else if (e.getSource().equals(moveOneForward)) {
             queue.moveForwardQueue();
             try {
                 queue.saveData();
+                instruction.setText("<html>" + CurrentQueueInfo().replaceAll("<", "&lt;")
+                        .replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "<html>");
             } catch (FileNotFoundException | UnsupportedEncodingException e1) {
                 System.out.println("Save failed! Please check!");
+            } catch (IOException e1) {
+                System.out.println("Read failed! Please check!");
             }
         }
     }

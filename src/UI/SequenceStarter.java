@@ -1,5 +1,7 @@
 package UI;
 
+import org.json.JSONException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +19,7 @@ public class SequenceStarter extends JFrame implements ActionListener {
 //    private JButton enter;
 
 
-    public SequenceStarter()  throws IOException {
+    public SequenceStarter() throws IOException, JSONException {
 
         super("Sequence Generator");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -47,7 +49,7 @@ public class SequenceStarter extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, JSONException {
         new SequenceStarter();
     }
 

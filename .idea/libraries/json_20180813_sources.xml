@@ -2,8 +2,6 @@
   <library name="json-20180813-sources">
     <CLASSES />
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$USER_HOME$/Downloads/json-20180813-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
