@@ -15,18 +15,20 @@ public class FileReaderUser1 {
     public ListOfCustomer readData() throws IOException {
         List<String> lines = Files.readAllLines(Paths.get("output"));
         ListOfCustomer q = new ListOfCustomer();
-        for (String line : lines){
-            Customer c = new RegularCustomer();
-            ArrayList<String> partsOfLine = splitOnSpace(line);
-            c.setName(partsOfLine.get(0));
-            c.setPhoneNumber(partsOfLine.get(1));
-            try {
-                c.setPosition((Integer.parseInt(partsOfLine.get(2))));
-            } catch (ArrayIndexOutOfBoundsException e){
-                System.out.println("Your save file have a invalid position.");
-            }
-            q.addCustomer(c);
+        if (lines.size() != 0) {
+            for (String line : lines) {
+                Customer c = new RegularCustomer();
+                ArrayList<String> partsOfLine = splitOnSpace(line);
+                c.setName(partsOfLine.get(0));
+                c.setPhoneNumber(partsOfLine.get(1));
+                try {
+                    c.setPosition((Integer.parseInt(partsOfLine.get(2))));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Your save file have a invalid position.");
+                }
+                q.addCustomer(c);
 
+            }
         }
         return q;
     }

@@ -37,7 +37,7 @@ public class ListOfCustomer extends Subject implements Group  {
     //EFFECT:RemoveButton any customer out of the customers if not in the customers
     public void removeCustomer(Customer c) {
         if (isContains(c, customers)) {
-            customers.remove(c.getPosition());
+            customers.remove(c);
         } else System.out.println("The customer you want to RemoveButton is not in the customers.");
     }
 
@@ -109,7 +109,7 @@ public class ListOfCustomer extends Subject implements Group  {
     }
 
     //Helper
-    private Customer customerFoundByName(String name) {
+    public Customer customerFoundByName(String name) {
         for (Customer c : customers) {
             if (c.getName().equals(name)) {
                 return c;
@@ -118,6 +118,8 @@ public class ListOfCustomer extends Subject implements Group  {
         }
         return null;
     }
+
+
 
     public boolean isNotInTheQueue() {
         return notInTheQueue;
@@ -172,4 +174,11 @@ public class ListOfCustomer extends Subject implements Group  {
     }
 
 
+    public void moveQueueBehindRemovedCustomerForward(Customer c) {
+        for (Customer customer:customers) {
+            if (customer.getPosition()>c.getPosition()){
+                customer.setPosition(customer.getPosition()-1);
+            }
+        }
+    }
 }

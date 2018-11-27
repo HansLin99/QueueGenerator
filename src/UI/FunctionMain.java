@@ -6,6 +6,7 @@ import CustomerData.RegularCustomer;
 import UI.buttons.AddButton;
 import UI.buttons.RemoveButton;
 import UI.buttons.SearchButton;
+import org.json.JSONException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ import java.io.UnsupportedEncodingException;
 
 public class FunctionMain extends JFrame implements ActionListener {
 
-    private static final int WIDTH = 700;
+    private static final int WIDTH = 900;
     private static final int HEIGHT = 400;
     private static ListOfCustomer queue;
     private JButton addCustomer;
@@ -60,11 +61,11 @@ public class FunctionMain extends JFrame implements ActionListener {
                 .replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "<html>");
         instructions.add(instruction);
 
-        pane.add(instructions, BorderLayout.CENTER);
+        pane.add(instructions, BorderLayout.NORTH);
         pane.add(buttons, BorderLayout.SOUTH);
 
 
-        pack();
+
         setVisible(true);
 
         addCustomer.addActionListener(this);
@@ -97,7 +98,7 @@ public class FunctionMain extends JFrame implements ActionListener {
         if (e.getSource().equals(addCustomer)) {
             new AddButton(queue);
         } else if (e.getSource().equals(removeCustomer)) {
-            new RemoveButton();
+            new RemoveButton(queue);
         } else if (e.getSource().equals(clearQueue)) {
             queue.resetQueue();
             try {
@@ -112,12 +113,12 @@ public class FunctionMain extends JFrame implements ActionListener {
                 e1.printStackTrace();
             }
         } else if (e.getSource().equals(searchCustomer)){
-            new SearchButton();
+            new SearchButton(queue);
         } else if (e.getSource().equals(quit)) {
             dispose();
             try {
                 new SequenceStarter();
-            } catch (IOException e1) {
+            } catch (IOException | JSONException e1) {
                 System.out.println("Error!");
             }
         } else if (e.getSource().equals(moveOneForward)) {

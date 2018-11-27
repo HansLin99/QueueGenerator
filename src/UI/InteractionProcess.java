@@ -34,9 +34,9 @@ class InteractionProcess {
             }
             else customer = new RegularCustomer();
             System.out.println("Please enter the name of the customer:");
-            customer.addCustomer(customer, s.nextLine(), "");
-            System.out.println("Please enter the phone number of this customer");
-            customer.addCustomer(customer, "", s.nextLine());
+//            customer.addCustomer(customer, s.nextLine(), "");
+//            System.out.println("Please enter the phone number of this customer");
+//            customer.addCustomer(customer, "", s.nextLine());
             System.out.println("If the customer has fellows? (Yes or No)");
             try {
                 if (hasFellows(s.nextLine())){
