@@ -29,6 +29,7 @@ public class SearchButton extends JFrame implements ActionListener , WindowListe
         addWindowListener(this);
         this.queue = queue;
         this.functionMain = functionMain;
+        setLocation(500,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         setSize(500, 200);
@@ -64,12 +65,15 @@ public class SearchButton extends JFrame implements ActionListener , WindowListe
     public void actionPerformed(ActionEvent e) {
         String nameEntered = name.getText();
         if (nameEntered.equals("")){
+            output.setForeground(Color.RED);
             output.setText("Please enter valid information.");
         } else if (queue.ifAlreadyInQueue(nameEntered)) {
             Customer c = queue.customerFoundByName(nameEntered);
+            output.setForeground(Color.BLACK);
             output.setText("<html>" + "Your name is:" + c.getName() + "<br/>" + "Your current position is:" + c.getPosition() + "<html>");
 
         } else {
+            output.setForeground(Color.BLUE);
             output.setText("The customer you enter is not in the queue. Please re-enter a customer.");
             name.setText("");
         }

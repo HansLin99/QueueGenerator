@@ -30,6 +30,7 @@ public class RemoveButton extends JFrame implements ActionListener , WindowListe
         super("Please enter customer information");
         this.queue = queue;
         this.functionMain = functionMain;
+        setLocation(500,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         addWindowListener(this);
         setResizable(false);
@@ -66,11 +67,13 @@ public class RemoveButton extends JFrame implements ActionListener , WindowListe
     public void actionPerformed(ActionEvent e) {
         String nameEntered = name.getText();
         if (nameEntered.equals("")){
+            output.setForeground(Color.RED);
             output.setText("Please enter valid information.");
         } else if (queue.ifAlreadyInQueue(nameEntered)) {
             Customer c = queue.customerFoundByName(nameEntered);
             queue.removeCustomer(c);
             queue.moveQueueBehindRemovedCustomerForward(c);
+            output.setForeground(Color.BLACK);
             output.setText("Remove successfully!");
             name.setText("");
             try {
@@ -80,6 +83,7 @@ public class RemoveButton extends JFrame implements ActionListener , WindowListe
             }
 
         } else {
+            output.setForeground(Color.BLUE);
             output.setText("The customer you enter is not in the queue. Please re-enter a customer.");
             name.setText("");
         }

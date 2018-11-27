@@ -22,6 +22,8 @@ public class SequenceStarter extends JFrame implements ActionListener {
     public SequenceStarter() throws IOException, JSONException {
 
         super("Sequence Generator");
+        setLocation(500,300);
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(WIDTH,HEIGHT);
         setResizable(false);

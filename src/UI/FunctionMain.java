@@ -32,6 +32,7 @@ public class FunctionMain extends JFrame implements ActionListener {
 
     public FunctionMain() throws IOException {
         super("Functions");
+        setLocation(300,300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setSize(WIDTH, HEIGHT);
@@ -134,10 +135,6 @@ public class FunctionMain extends JFrame implements ActionListener {
 
     public JLabel getInstruction() {
         return instruction;
-    }
-
-    public void setInstruction(JLabel instruction) {
-        this.instruction = instruction;
     }
 
     public String infoDisplay() throws IOException {

@@ -32,6 +32,7 @@ public class AddButton extends JFrame implements ActionListener, WindowListener 
         super("Please enter customer information");
         this.queue = queue;
         this.functionMain = functionMain;
+        setLocation(500,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         addWindowListener(this);
@@ -75,6 +76,7 @@ public class AddButton extends JFrame implements ActionListener, WindowListener 
         String nameEntered = name.getText();
         String phoneNumEntered = phoneNum.getText();
         if (nameEntered.equals("")|phoneNumEntered.equals("")){
+            output.setForeground(Color.RED);
             output.setText("Please enter valid information.");
         } else if (!queue.ifAlreadyInQueue(nameEntered)) {
             ReservedCustomer customer = new ReservedCustomer();
@@ -82,6 +84,7 @@ public class AddButton extends JFrame implements ActionListener, WindowListener 
             customer.setPhoneNumber(phoneNumEntered);
             customer.setPosition(queue.getCustomers().size() + 1);
             queue.addCustomer(customer);
+            output.setForeground(Color.black);
             output.setText("Add successfully!");
             name.setText("");
             phoneNum.setText("");
@@ -92,6 +95,7 @@ public class AddButton extends JFrame implements ActionListener, WindowListener 
             }
 
         } else {
+            output.setForeground(Color.BLUE);
             output.setText("The customer you enter is already in the queue. Please re-enter a customer.");
             name.setText("");
             phoneNum.setText("");
