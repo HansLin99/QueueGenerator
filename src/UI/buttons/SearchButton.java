@@ -10,9 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 public class SearchButton extends JFrame implements ActionListener , WindowListener {
     private JLabel nameInstruction;
@@ -92,7 +90,7 @@ public class SearchButton extends JFrame implements ActionListener , WindowListe
     @Override
     public void windowClosed(WindowEvent e) {
         try {
-            functionMain.getInstruction().setText(functionMain.infoDisplay());
+            functionMain.getDisplay().setText(functionMain.infoDisplay());
         } catch (IOException e1) {
             e1.printStackTrace();
         }

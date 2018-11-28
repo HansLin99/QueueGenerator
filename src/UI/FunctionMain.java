@@ -2,7 +2,6 @@ package UI;
 
 import CustomerData.Customer;
 import CustomerData.ListOfCustomer;
-import CustomerData.RegularCustomer;
 import UI.buttons.AddButton;
 import UI.buttons.RemoveButton;
 import UI.buttons.SearchButton;
@@ -16,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import static javax.swing.ScrollPaneConstants.*;
+
 public class FunctionMain extends JFrame implements ActionListener {
 
     private static final int WIDTH = 900;
@@ -27,8 +28,9 @@ public class FunctionMain extends JFrame implements ActionListener {
     private JButton quit;
     private JButton searchCustomer;
     private JButton moveOneForward;
-    private JLabel instruction;
-    private JPanel instructions;
+    private JLabel display;
+    private JPanel displayPanel;
+    private JScrollPane scrollPane;
 
     public FunctionMain() throws IOException {
         super("Functions");
@@ -47,9 +49,10 @@ public class FunctionMain extends JFrame implements ActionListener {
         searchCustomer = new JButton("Search Customer");
         quit = new JButton("Quit");
         JPanel buttons = new JPanel();
-        instructions = new JPanel();
+        displayPanel = new JPanel();
         moveOneForward = new JButton("Update one");
         Font font = new Font("SansSerif", Font.BOLD, 35);
+
 
 
         buttons.add(addCustomer);
@@ -59,12 +62,15 @@ public class FunctionMain extends JFrame implements ActionListener {
         buttons.add(moveOneForward);
         buttons.add(quit);
 
-        instruction = new JLabel(infoDisplay());
-        instruction.setFont(font);
-        instruction.setForeground(Color.PINK);
-        instructions.add(instruction);
+        display = new JLabel(infoDisplay());
+        display.setFont(font);
+        display.setForeground(Color.PINK);
+        displayPanel.add(display);
 
-        pane.add(instructions, BorderLayout.NORTH);
+
+        scrollPane = new JScrollPane(displayPanel);
+        add(scrollPane);
+//      pane.add(displayPanel, BorderLayout.NORTH);
         pane.add(buttons, BorderLayout.SOUTH);
 
 
@@ -110,7 +116,7 @@ public class FunctionMain extends JFrame implements ActionListener {
                 System.out.println("Save failed! Please check the queue!");
             }
             try {
-                instruction.setText(infoDisplay());
+                display.setText(infoDisplay());
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -127,7 +133,7 @@ public class FunctionMain extends JFrame implements ActionListener {
             queue.moveForwardQueue();
             try {
                 queue.saveData();
-                instruction.setText(infoDisplay());
+                display.setText(infoDisplay());
             } catch (FileNotFoundException | UnsupportedEncodingException e1) {
                 System.out.println("Save failed! Please check!");
             } catch (IOException e1) {
@@ -136,8 +142,8 @@ public class FunctionMain extends JFrame implements ActionListener {
         }
     }
 
-    public JLabel getInstruction() {
-        return instruction;
+    public JLabel getDisplay() {
+        return display;
     }
 
     public String infoDisplay() throws IOException {

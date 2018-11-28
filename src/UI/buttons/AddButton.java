@@ -115,7 +115,7 @@ public class AddButton extends JFrame implements ActionListener, WindowListener 
     @Override
     public void windowClosed(WindowEvent e) {
         try {
-            functionMain.getInstruction().setText(functionMain.infoDisplay());
+            functionMain.getDisplay().setText(functionMain.infoDisplay());
         } catch (IOException e1) {
             e1.printStackTrace();
         }

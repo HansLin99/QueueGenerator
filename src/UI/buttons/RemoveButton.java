@@ -2,9 +2,7 @@ package UI.buttons;
 
 import CustomerData.Customer;
 import CustomerData.ListOfCustomer;
-import CustomerData.ReservedCustomer;
 import UI.FunctionMain;
-import com.sun.javaws.util.JfxHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -102,7 +100,7 @@ public class RemoveButton extends JFrame implements ActionListener , WindowListe
     @Override
     public void windowClosed(WindowEvent e) {
         try {
-            functionMain.getInstruction().setText(functionMain.infoDisplay());
+            functionMain.getDisplay().setText(functionMain.infoDisplay());
         } catch (IOException e1) {
             e1.printStackTrace();
         }
