@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import Exceptions.UserNotInQueueException;
@@ -12,7 +13,7 @@ import FileReaderWriter.FileWriterUser1;
 import Interfaces.Group;
 import observer.Subject;
 
-public class ListOfCustomer extends Subject implements Group  {
+public class ListOfCustomer extends Subject implements Group, Iterable<Customer>  {
     private List<Customer> customers;
     private Customer fellowLeader;
     private boolean notInTheQueue = false;
@@ -180,5 +181,10 @@ public class ListOfCustomer extends Subject implements Group  {
                 customer.setPosition(customer.getPosition()-1);
             }
         }
+    }
+
+    @Override
+    public Iterator<Customer> iterator() {
+        return customers.iterator();
     }
 }
