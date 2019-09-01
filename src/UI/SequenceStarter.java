@@ -41,7 +41,7 @@ public class SequenceStarter extends JFrame implements ActionListener {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    g.drawImage(ImageIO.read(new FileInputStream("background.jpg")), 0, 0, getWidth(), getHeight(), this);
+                    g.drawImage(ImageIO.read(new FileInputStream("lib/background.jpg")), 0, 0, getWidth(), getHeight(), this);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
