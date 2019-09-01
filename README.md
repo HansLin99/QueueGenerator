@@ -14,6 +14,6 @@ This application was designed for popular restaurants or wherever there is a que
 
 First and foremost, you can know your city's weather at homepage.
 
-[Homepage](/imgs/Homepage.png "Homepage")
+![Homepage](/imgs/Homepage.png "Homepage")
 
 
