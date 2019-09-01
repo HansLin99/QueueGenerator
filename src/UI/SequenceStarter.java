@@ -1,7 +1,6 @@
 package UI;
 
-import org.json.JSONException;
-import sun.tools.jps.Jps;
+import netscape.javascript.JSException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,7 +22,7 @@ public class SequenceStarter extends JFrame implements ActionListener {
 //    private JPanel backgroundPanel;
 
 
-    public SequenceStarter() throws IOException, JSONException {
+    public SequenceStarter() throws IOException, JSException {
 
         super("Sequence Generator");
 
@@ -77,7 +76,7 @@ public class SequenceStarter extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) throws IOException, JSONException {
+    public static void main(String[] args) throws IOException, JSException {
         new SequenceStarter();
     }
 

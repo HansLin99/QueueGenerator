@@ -5,7 +5,6 @@ import CustomerData.ListOfCustomer;
 import UI.buttons.AddButton;
 import UI.buttons.RemoveButton;
 import UI.buttons.SearchButton;
-import com.oracle.javafx.jmx.json.JSONException;
 import org.json.JSONException;
 
 import javax.swing.*;
@@ -16,7 +15,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import static javax.swing.ScrollPaneConstants.*;
 
 public class FunctionMain extends JFrame implements ActionListener {
 
