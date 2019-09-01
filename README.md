@@ -14,6 +14,6 @@ This application was designed for popular restaurants or wherever there is a que
 
 First and foremost, you can know your city's weather at homepage.
 
-<img src="https://github.com/HansLin99/QueueGenerator/blob/master/imgs/Homepage.png" alt="Homepage" width="100" height="300">
+<img src="https://github.com/HansLin99/QueueGenerator/blob/master/imgs/Homepage.png" alt="Homepage" width="200" height="300">
 
 
