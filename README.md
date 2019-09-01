@@ -18,7 +18,7 @@ First and foremost, you can know your city's weather at homepage.
 
 Then you can enter your customer info
 
-<img src="https://github.com/HansLin99/QueueGenerator/blob/master/imgs/Add.png" alt="Add customer" width="1000" height="300">
+<img src="https://github.com/HansLin99/QueueGenerator/blob/master/imgs/Add.png" alt="Add customer" width="800" height="400">
 
 You can see the queue from the main panel
 
