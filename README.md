@@ -23,3 +23,7 @@ Then you can enter your customer info
 You can see the queue from the main panel
 
 <img src="https://github.com/HansLin99/QueueGenerator/blob/master/imgs/Queue.png" alt="Homepage" width="1000" height="300">
+
+---
+
+You can also add more customers or remove a particular customer. ***Play it!***
