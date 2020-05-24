@@ -1,4 +1,4 @@
-# QueueGenerator
+# WaitlistGenerator
 
 This is the very first project I created in Java. My stories with it are at [Hansylin](https://hanslin99.github.io/hansylin/). Check it out!
 
